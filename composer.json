@@ -14,7 +14,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "AndreasSinga\\TekenAja\\": "src/"
+            "AndreasCandle\\TekenAja\\": "src/"
         }
     },
     "authors": [
