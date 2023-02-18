@@ -12,15 +12,10 @@
         "Digital Signature Library",
         "HTTP client"
     ],
-    "autoload": {
-        "psr-4": {
-            "AndreasCandle\\TekenAja\\": "src/"
-        }
-    },
     "authors": [
         {
             "name": "Andreas Panjaitan",
-            "email":"andreas@singa.id"
+            "email": "andreas@singa.id"
         },
         {
             "name": "Andreas Panjaitan",
@@ -38,13 +33,23 @@
     },
     "config": {
         "sort-packages": true
-      },
-      "prefer-stable": true,
-      "minimum-stability": "dev",
-      "scripts": {
+    },
+    "prefer-stable": true,
+    "minimum-stability": "dev",
+    "scripts": {
         "test": "phpunit --colors=always",
         "test:ci": "composer test -- --verbose --coverage-text --coverage-clover=coverage.xml"
-      },
+    },
+    "autoload": {
+        "psr-4": {
+            "AndreasCandle\\TekenAja\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "AndreasCandle\\TekenAja\\": "src/"
+        }
+    },
     "require-dev": {
         "phpunit/phpunit": "^9.5"
     }
