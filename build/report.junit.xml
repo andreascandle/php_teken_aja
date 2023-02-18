@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="Testing" file="/Users/karidanayam/Documents/Andreas/Singa/payday_code/composer-package/teken-aja/test/unit/Testing.php" tests="2" assertions="0" errors="0" warnings="0" failures="0" skipped="0" time="3.835722">
+    <testcase name="testRegister" class="Testing" classname="Testing" file="/Users/karidanayam/Documents/Andreas/Singa/payday_code/composer-package/teken-aja/test/unit/Testing.php" line="17" assertions="0" time="3.527817">
+      <system-out>Array
+(
+    [email] =&gt; andreas@singa.id
+    [name] =&gt; Andreas
+    [gender] =&gt; 1
+    [dob] =&gt; 1989-05-03
+    [pob] =&gt; jakarta
+    [nik] =&gt; 3175050305890008
+    [mobile] =&gt; 085156229923
+    [province] =&gt; 31
+    [district] =&gt; 75
+    [sub_district] =&gt; 05
+    [address] =&gt; jl. trikora raya no. 14
+    [zip_code] =&gt; 13760
+    [ktp_photo] =&gt; CURLFile Object
+        (
+            [name] =&gt; /Users/karidanayam/Documents/Andreas/Singa/payday_code/composer-package/teken-aja/test/images_test/l-img20210420015823jpg20210420005933.jpeg
+            [mime] =&gt; 
+            [postname] =&gt; 
+        )
+
+    [selfie_photo] =&gt; CURLFile Object
+        (
+            [name] =&gt; /Users/karidanayam/Documents/Andreas/Singa/payday_code/composer-package/teken-aja/test/images_test/ghozali-jual-foto-selfie-di-nft-dapat-rp12-6-miliar-ternyata-begini-cara-kerjanya-USz4uJ39yh.jpeg
+            [mime] =&gt; 
+            [postname] =&gt; 
+        )
+
+)
+Array
+(
+    [status] =&gt; ERROR
+    [ref_id] =&gt; 987eafde-5d93-4586-b3a5-2c06b496b064
+    [code] =&gt; EKYC_INVALID
+    [timestamp] =&gt; 2023-02-18T12:40:41+07:00
+    [message] =&gt; Informasi EKYC tidak valid.
+    [data] =&gt; 
+)
+</system-out>
+    </testcase>
+    <testcase name="testRegisterCheck" class="Testing" classname="Testing" file="/Users/karidanayam/Documents/Andreas/Singa/payday_code/composer-package/teken-aja/test/unit/Testing.php" line="31" assertions="0" time="0.307905"/>
+  </testsuite>
+</testsuites>
