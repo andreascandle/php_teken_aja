@@ -38,7 +38,7 @@ class ComposerStaticInitba4cee078ae6b50b4e6c010df58b573c
         ),
         'A' => 
         array (
-            'AndreasSinga\\TekenAja\\' => 22,
+            'AndreasCandle\\TekenAja\\' => 23,
         ),
     );
 
@@ -79,7 +79,7 @@ class ComposerStaticInitba4cee078ae6b50b4e6c010df58b573c
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
         ),
-        'AndreasSinga\\TekenAja\\' => 
+        'AndreasCandle\\TekenAja\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),

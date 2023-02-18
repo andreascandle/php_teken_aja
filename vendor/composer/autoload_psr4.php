@@ -15,5 +15,5 @@ return array(
     'Dotenv\\' => array($vendorDir . '/vlucas/phpdotenv/src'),
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
-    'AndreasSinga\\TekenAja\\' => array($baseDir . '/src'),
+    'AndreasCandle\\TekenAja\\' => array($baseDir . '/src'),
 );

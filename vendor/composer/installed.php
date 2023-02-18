@@ -1,19 +1,19 @@
 <?php return array(
     'root' => array(
-        'name' => 'andreas-singa/teken-aja',
-        'pretty_version' => 'dev-master',
-        'version' => 'dev-master',
-        'reference' => 'eeb7649509a8a7c001c149b60ca9f1a6ba919ee2',
+        'name' => 'andreascandle/php_teken_aja',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '507cf975284e0e9d6b8d637638502f1c6e00abf5',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
-        'andreas-singa/teken-aja' => array(
-            'pretty_version' => 'dev-master',
-            'version' => 'dev-master',
-            'reference' => 'eeb7649509a8a7c001c149b60ca9f1a6ba919ee2',
+        'andreascandle/php_teken_aja' => array(
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '507cf975284e0e9d6b8d637638502f1c6e00abf5',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
