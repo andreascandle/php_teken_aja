@@ -1,5 +1,5 @@
 {
-    "name": "andreascandle/tekenaja",
+    "name": "andreascandle/php_teken_aja",
     "description": "Packages for using teken aja API",
     "type": "library",
     "license": "MIT",
