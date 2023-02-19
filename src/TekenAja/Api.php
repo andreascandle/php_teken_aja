@@ -92,7 +92,8 @@ class Api
         'timeout' => 60,
         'port' => 443,
         'timezone' => 'Asia/Jakarta',
-        // New Options
+        'host' => 'apix.sandbox-111094.com',
+        // New Options        
         'options' => array(
             'host' => 'apix.sandbox-111094.com',
             'scheme' => 'https',
@@ -106,10 +107,7 @@ class Api
     {
         $this->settings['apikey'] = $apikey;
         $this->settings['apiVersion'] = $apiVersion;
-
-        if (isset($options['host']) && $options['host']) {
-            $this->settings['host'] = preg_replace('/http[s]?\:\/\//', '', $this->settings['host'], 1);
-        }
+        
 
         foreach ($options as $key => $value) {
             if (isset($this->settings[$key])) {
@@ -133,6 +131,10 @@ class Api
         } else {
             $this->settings['host'] = self::getHostName();
             $this->settings['options']['host'] = self::getHostName();
+        }
+
+        if (isset($options['host']) && $options['host']) {
+            $this->settings['host'] = preg_replace('/http[s]?\:\/\//', '', $this->settings['host'], 1);
         }
 
         // Setup optional timezone, if timezone is empty
