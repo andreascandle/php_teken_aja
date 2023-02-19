@@ -1,1 +1,1 @@
-{"version":1,"defects":{"Testing::testRegisterCheck":5,"Testing::testRegister":5},"times":{"Testing::testRegisterCheck":0.308,"Testing::testRegister":3.528}}
+{"version":1,"defects":{"Testing::testRegisterCheck":5,"Testing::testRegister":5},"times":{"Testing::testRegisterCheck":0.313,"Testing::testRegister":3.424}}

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
  * TekenAja REST API Library.
@@ -14,9 +14,9 @@ namespace TekenAja;
 
 use Unirest\Request;
 use Unirest\Request\Body;
-use Unirest\HttpClient;
 
-class Api {
+class Api
+{
 
     /**
      * Curl Options.
@@ -37,7 +37,7 @@ class Api {
      */
     private static $timezone = 'Asia/Jakarta';
 
-     /**
+    /**
      * Default TekenAja Host.
      *
      * @var string
@@ -58,7 +58,8 @@ class Api {
      */
     private static $timeOut = 60;
 
-    private function headerConfig($contentType = 'application/json',){
+    private function headerConfig($contentType = 'application/json', )
+    {
         $headers = array();
         $headers['Accept'] = 'application/json';
         $headers['Content-Type'] = $contentType;
@@ -78,7 +79,6 @@ class Api {
         $existing_options = $new_options + $existing_options;
         return $existing_options;
     }
-
 
     /**
      * Default TekenAja Rest Settings
@@ -102,15 +102,14 @@ class Api {
         ),
     );
 
-    public function __construct($apikey = "", $options = [],$apiVersion = "2")
+    public function __construct($apikey = "", $options = [], $apiVersion = "2")
     {
         $this->settings['apikey'] = $apikey;
         $this->settings['apiVersion'] = $apiVersion;
-        
-        if(isset($options['host']) && $options['host']){
+
+        if (isset($options['host']) && $options['host']) {
             $this->settings['host'] = preg_replace('/http[s]?\:\/\//', '', $this->settings['host'], 1);
         }
-        
 
         foreach ($options as $key => $value) {
             if (isset($this->settings[$key])) {
@@ -164,23 +163,27 @@ class Api {
         }
     }
 
-    public static function getHost() {
+    public static function getHost()
+    {
         return self::$hostName;
     }
 
-    private function getProvincesCode($nik = ""){
-        return substr($nik,0,2);
+    private function getProvincesCode($nik = "")
+    {
+        return substr($nik, 0, 2);
     }
 
-    private function getDistrictCode($nik = ""){
-        return substr($nik,2,2);
+    private function getDistrictCode($nik = "")
+    {
+        return substr($nik, 2, 2);
     }
 
-    private function getSubDisctrictCode($nik = ""){
-        return substr($nik,4,2);
+    private function getSubDisctrictCode($nik = "")
+    {
+        return substr($nik, 4, 2);
     }
 
-     /**
+    /**
      * Set TimeZone.
      *
      * @param string $timeZone Time yang akan dipergunakan.
@@ -302,18 +305,19 @@ class Api {
         return self::$scheme;
     }
 
-    private function getFullUlr(){
+    private function getFullUlr()
+    {
         return $this->settings['scheme'] . '://' . $this->settings['host'] . '/';
     }
 
-     /**
+    /**
      * Register
      * This module is for registering users into TekenAja
      *
      * @param string $email User Email Address
      * @param string $name Name of the user
      * @param boolean $gender Boolean (0 or 1), 0 = Female, 1 = Male
-     * @param string $dob is the user's date of birth according to the E-KTP. Format in the form YYYY-MM-DD (example: 1990-02-27).   
+     * @param string $dob is the user's date of birth according to the E-KTP. Format in the form YYYY-MM-DD (example: 1990-02-27).
      * @param string $pob  is the place of birth of the user according to the E-KTP
      * @param string $nik is the user's NIK E-KTP number. NIK must be unique and has never been registered before
      * @param string $mobile  is the user's mobile number. Example of number format 0823000000.
@@ -324,28 +328,28 @@ class Api {
      *
      * @return HttpResponse
      */
-    public function register($email,$name,$gender,$dob,$pob,$nik,$mobile,$address,int $zip_code,$ktp_photo,$selfie_photo){
+    public function register($email, $name, $gender, $dob, $pob, $nik, $mobile, $address, int $zip_code, $ktp_photo, $selfie_photo)
+    {
         $headers = $this->headerConfig('multipart/form-data');
-        $request_path = $this->getFullUlr()."v2/register";
-        
+        $request_path = $this->getFullUlr() . "v2/register";
+
         $files = array('ktp_photo' => $ktp_photo, 'selfie_photo' => $selfie_photo);
         $data = array(
-            'email'         => $email,
-            'name'          => $name,
-            'gender'        => $gender,
-            'dob'           => $dob,
-            'pob'           => $pob,
-            'nik'           => $nik,
-            'mobile'        => $mobile,
-            'province'      => $this->getProvincesCode($nik),
-            'district'      => $this->getDistrictCode($nik),
-            'sub_district'  => $this->getSubDisctrictCode($nik),
-            'address'       => $address,
-            'zip_code'      => $zip_code
+            'email' => $email,
+            'name' => $name,
+            'gender' => $gender,
+            'dob' => $dob,
+            'pob' => $pob,
+            'nik' => $nik,
+            'mobile' => $mobile,
+            'province' => $this->getProvincesCode($nik),
+            'district' => $this->getDistrictCode($nik),
+            'sub_district' => $this->getSubDisctrictCode($nik),
+            'address' => $address,
+            'zip_code' => $zip_code,
         );
 
-        $body = Body::Multipart($data, $files);
-        print_r($body);
+        $body = Body::Multipart($data, $files);        
         $response = Request::post($request_path, $headers, $body);
 
         return $response;
@@ -360,30 +364,32 @@ class Api {
      * check_nik : to check status registration based on the NIK entered
      * resend_email : to resend the confirmation email sent to users who have
      * been successfully registered.
-     * 
+     *
      * @param string $email according to the email that was registered during the registration process (Optional).
      *
      * @return @var \Unirest\Response
      */
-    
-    public function registerCheck($nik = "", $action = "", $email = ""){
+
+    public function registerCheck($nik = "", $action = "", $email = "")
+    {
         $headers = $this->headerConfig('multipart/form-data');
-        $request_path = $this->getFullUlr()."v2/register-check";
-                
+        $request_path = $this->getFullUlr() . "v2/register-check";
+
         $data = array(
-            'nik'         => (string) $nik,
-            'action'          => (string) $action,
-            'email'        => (string) $email,            
+            'nik' => (string) $nik,
+            'action' => (string) $action,        
         );
+
+        if($email !== null || trim($email) !== ''){
+            $data['email'] = (string) $email;
+        }    
 
         $body = Body::Multipart($data);
         $response = Request::post($request_path, $headers, $body);
-
-
         return $response;
     }
 
-     /**
+    /**
      * Document Upload
      * This module is used to upload documents to be signed by the user.
      *
@@ -400,18 +406,17 @@ class Api {
      * y: vertical top-left initial position point of the image (mm)
      * w: image width size (mm)
      * h: image height size (mm)
-     * 
+     *
      * been successfully registered.
-     * 
+     *
      * @param string $email according to the email that was registered during the registration process (Optional).
      *
      * @return string
      */
-    public function documentUpload(){
+    public function documentUpload()
+    {
         // On Progress
-        
+
     }
 
-
-    
 }
