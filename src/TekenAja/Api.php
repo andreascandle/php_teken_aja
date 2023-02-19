@@ -102,7 +102,7 @@ class Api {
         ),
     );
 
-    public function __construct($apikey = "", $apiVersion = "2", $options = [])
+    public function __construct($apikey = "", $options = [],$apiVersion = "2")
     {
         $this->settings['apikey'] = $apikey;
         $this->settings['apiVersion'] = $apiVersion;
