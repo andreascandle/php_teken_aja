@@ -37,4 +37,10 @@ class Testing extends PHPUnit_Framework_TestCase {
             return false;
         }        
     }
+
+    public function testUploadDocument() {
+        $TekenAjaApi = new \TekenAja\Api($this->apiKeyTest);
+        $tekenAja = $TekenAjaApi->documentUpload();
+    }
+
 }

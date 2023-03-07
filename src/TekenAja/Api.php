@@ -312,6 +312,29 @@ class Api
         return $this->settings['scheme'] . '://' . $this->settings['host'] . '/';
     }
 
+    private function validateDate($date, $format = 'Y-m-d')
+    {
+        $d = \DateTime::createFromFormat($format, $date);
+        // The Y ( 4 digits year ) returns TRUE for any integer with any number of digits so changing the comparison from == to === fixes the issue.
+        return $d && $d->format($format) === $date;
+    }
+
+    private function dateLessNow(string $date){
+        try {
+            //code...
+            $date_now = new \DateTime();
+            $date2    = new \DateTime($date);
+
+            if ($date_now > $date2) {
+                return false;
+            }
+            return true;
+        } catch (\Throwable $th) {
+            //throw $th;
+            return false;
+        }        
+    }
+
     /**
      * Register
      * This module is for registering users into TekenAja
@@ -384,7 +407,7 @@ class Api
 
         if($email !== null || trim($email) !== ''){
             $data['email'] = (string) $email;
-        }    
+        }
 
         $body = Body::Multipart($data);
         $response = Request::post($request_path, $headers, $body);
@@ -395,7 +418,7 @@ class Api
      * Document Upload
      * This module is used to upload documents to be signed by the user.
      *
-     * @param string path from PDF File to be sign
+     * @param string $document path from PDF File to be sign
      * @param string $signature json String (all values in millimeters) Sample Value :
      * If there is 1 signer:
      * [{"email":"anton@mail.com","detail":[{"p":1,"x":200,"y":200,"w":200,"h":200},{"p":2,"x":200,"y":200,"w":200,"h":200}]}]
@@ -409,16 +432,67 @@ class Api
      * w: image width size (mm)
      * h: image height size (mm)
      *
-     * been successfully registered.
+     * 
      *
      * @param string $email according to the email that was registered during the registration process (Optional).
      *
      * @return string
      */
-    public function documentUpload()
-    {
+    public function documentUpload($document, $signature,$ematerai = '', $estamp = '', $document_password = '', $expiration_date = '',$is_in_order = 1,$show_qrcode = 1,$qrcode_position = 'bottom-right', $qrcode_page = 'multiple',$page_number = 0, $qrcode_size = 15)
+    {        
         // On Progress
+        $documentExt = pathinfo($document, PATHINFO_EXTENSION);
+        if($documentExt === 'pdf'){
+            
+        }
+        $headers = $this->headerConfig('multipart/form-data');
+        $request_path = $this->getFullUlr() . "v2/document/upload";
 
+        $files = array('document' => $document);
+
+        
+        $data = array(
+            'signature' => $signature,
+            'is_in_order' => $is_in_order,
+            'qrcode_position' => $qrcode_position,
+            'qrcode_page' => $qrcode_page,
+            'qrcode_size' => $qrcode_size
+        );
+
+        if($estamp !== null || trim($estamp) !== ''){
+            $data['estamp'] = (string) $estamp;
+        }
+
+        if($document_password !== null || trim($document_password) !== ''){
+            $data['document_password'] = (string) $document_password;
+        }
+        
+        if($expiration_date !== null || trim($expiration_date) !== ''){
+            if($this->validateDate($expiration_date) && $this->dateLessNow($expiration_date)){
+                $data['expiration_date'] = (string) $expiration_date;
+            }            
+        }
+
+        if($is_in_order = 0){
+            unset($data['is_in_order']);
+        }
+
+        if($show_qrcode = 0){
+            unset($data['show_qrcode']);            
+        }
+        if($qrcode_page == 'page_number'){
+            $data['page_number'] = $page_number;
+        }
+
+        if($ematerai !== null || trim($ematerai) !== ''){
+            $data['ematerai'] = $ematerai;
+        }
+        
+
+        $body = Body::Multipart($data, $files);        
+        $response = Request::post($request_path, $headers, $body);
+
+        return $response;
     }
 
 }
