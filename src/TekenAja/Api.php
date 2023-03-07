@@ -12,6 +12,7 @@
 
 namespace TekenAja;
 
+use Exception;
 use Unirest\Request;
 use Unirest\Request\Body;
 
@@ -438,12 +439,12 @@ class Api
      *
      * @return string
      */
-    public function documentUpload($document, $signature,$ematerai = '', $estamp = '', $document_password = '', $expiration_date = '',$is_in_order = 1,$show_qrcode = 1,$qrcode_position = 'bottom-right', $qrcode_page = 'multiple',$page_number = 0, $qrcode_size = 15)
+    public function documentUpload($document, $signature,$ematerai = null, $estamp = '', $document_password = '', $expiration_date = '',$is_in_order = 1,$show_qrcode = 1,$qrcode_position = 'bottom-right', $qrcode_page = 'multiple',$page_number = 0, $qrcode_size = 15)
     {        
         // On Progress
         $documentExt = pathinfo($document, PATHINFO_EXTENSION);
-        if($documentExt === 'pdf'){
-            
+        if($documentExt !== 'pdf'){
+            throw new Exception('Document should be PDF file');
         }
         $headers = $this->headerConfig('multipart/form-data');
         $request_path = $this->getFullUlr() . "v2/document/upload";
