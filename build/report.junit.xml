@@ -1,7 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="Testing" file="/Users/karidanayam/Documents/Andreas/Singa/payday_code/composer-package/teken-aja/test/unit/Testing.php" tests="2" assertions="0" errors="0" warnings="0" failures="0" skipped="0" time="3.708069">
-    <testcase name="testRegister" class="Testing" classname="Testing" file="/Users/karidanayam/Documents/Andreas/Singa/payday_code/composer-package/teken-aja/test/unit/Testing.php" line="17" assertions="0" time="3.383040"/>
-    <testcase name="testRegisterCheck" class="Testing" classname="Testing" file="/Users/karidanayam/Documents/Andreas/Singa/payday_code/composer-package/teken-aja/test/unit/Testing.php" line="30" assertions="0" time="0.325029"/>
+  <testsuite name="Testing" file="/Users/karidanayam/Documents/Andreas/Singa/payday_code/composer-package/teken-aja/test/unit/Testing.php" tests="3" assertions="0" errors="0" warnings="0" failures="0" skipped="0" time="35.014532">
+    <testcase name="testRegister" class="Testing" classname="Testing" file="/Users/karidanayam/Documents/Andreas/Singa/payday_code/composer-package/teken-aja/test/unit/Testing.php" line="17" assertions="0" time="15.242339"/>
+    <testcase name="testRegisterCheck" class="Testing" classname="Testing" file="/Users/karidanayam/Documents/Andreas/Singa/payday_code/composer-package/teken-aja/test/unit/Testing.php" line="30" assertions="0" time="5.080486"/>
+    <testcase name="testUploadDocument" class="Testing" classname="Testing" file="/Users/karidanayam/Documents/Andreas/Singa/payday_code/composer-package/teken-aja/test/unit/Testing.php" line="41" assertions="0" time="14.691707">
+      <system-out>Array
+(
+    [0] =&gt; BodyData
+    [1] =&gt; Array
+        (
+            [signature] =&gt; [{"email":"anton@mail.com","detail":[{"p":1,"x" :200,"y":200,"w":200,"h":200},{"p":2,"x":200,"y ":200,"w":200,"h":200}]},{"email":"ayu@mail.com","detail":[{"p":1,"x":500,"y":500,"w":200,"h" :200}]}]
+            [is_in_order] =&gt; 1
+            [qrcode_position] =&gt; bottom-right
+            [qrcode_page] =&gt; single
+            [qrcode_size] =&gt; 15
+            [page_number] =&gt; 1
+            [document_password] =&gt; 
+        )
+
+)
+Array
+(
+    [status] =&gt; ERROR
+    [ref_id] =&gt; 98a2b5c5-9d4f-4dc6-b862-b9cb8d3e48f9
+    [code] =&gt; USER_UNREGISTER
+    [timestamp] =&gt; 2023-03-08T10:26:57+07:00
+    [message] =&gt; Array
+        (
+            [0] =&gt; anton@mail.com belum terdaftar.
+            [1] =&gt; ayu@mail.com belum terdaftar.
+        )
+
+    [data] =&gt; 
+)
+</system-out>
+    </testcase>
   </testsuite>
 </testsuites>

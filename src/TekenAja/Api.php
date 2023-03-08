@@ -437,9 +437,9 @@ class Api
      *
      * @param string $email according to the email that was registered during the registration process (Optional).
      *
-     * @return string
+     * @return @var \Unirest\Response
      */
-    public function documentUpload($document, $signature,$ematerai = null, $estamp = '', $document_password = '', $expiration_date = '',$is_in_order = 1,$show_qrcode = 1,$qrcode_position = 'bottom-right', $qrcode_page = 'multiple',$page_number = 0, $qrcode_size = 15)
+    public function documentUpload($document, $signature,$ematerai = null, $estamp = '', $document_password = '', $expiration_date = '',$is_in_order = 1,$show_qrcode = 0,$qrcode_position = 'bottom-right', $qrcode_page = 'single',$page_number = 1, $qrcode_size = 15)
     {        
         // On Progress
         $documentExt = pathinfo($document, PATHINFO_EXTENSION);
@@ -457,10 +457,11 @@ class Api
             'is_in_order' => $is_in_order,
             'qrcode_position' => $qrcode_position,
             'qrcode_page' => $qrcode_page,
-            'qrcode_size' => $qrcode_size
+            'qrcode_size' => $qrcode_size,
+            'page_number' => $page_number
         );
 
-        if($estamp !== null || trim($estamp) !== ''){
+        if($estamp !== null && trim($estamp) !== ''){
             $data['estamp'] = (string) $estamp;
         }
 
@@ -484,13 +485,18 @@ class Api
         if($qrcode_page == 'page_number'){
             $data['page_number'] = $page_number;
         }
+        if($page_number = 0){
+            unset($data['page_number']);            
+        }
 
-        if($ematerai !== null || trim($ematerai) !== ''){
+
+        if($ematerai !== null && trim($ematerai) !== ''){
             $data['ematerai'] = $ematerai;
         }
         
 
-        $body = Body::Multipart($data, $files);        
+        $body = Body::Multipart($data, $files); 
+        // print_r(['BodyData', $data]); 
         $response = Request::post($request_path, $headers, $body);
 
         return $response;

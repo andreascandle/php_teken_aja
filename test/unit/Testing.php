@@ -40,7 +40,16 @@ class Testing extends PHPUnit_Framework_TestCase {
 
     public function testUploadDocument() {
         $TekenAjaApi = new \TekenAja\Api($this->apiKeyTest);
-        $tekenAja = $TekenAjaApi->documentUpload();
+        $documentFile = dirname(__DIR__, 1)."/document_test/Copy of Draft LA micro loan (singa x temanQu) - Individu - FIX.docx - Google Docs (1).pdf";
+        $signature = '[{"email":"anton@mail.com","detail":[{"p":1,"x" :200,"y":200,"w":200,"h":200},{"p":2,"x":200,"y ":200,"w":200,"h":200}]},{"email":"ayu@mail.com","detail":[{"p":1,"x":500,"y":500,"w":200,"h" :200}]}]';
+        $tekenAja = $TekenAjaApi->documentUpload($documentFile, $signature);        
+        $responseData = json_decode($tekenAja->raw_body, true);
+        // print_r($responseData);
+        if ($responseData['message']){
+            return true;
+        }else{
+            return false;
+        }        
     }
 
 }
