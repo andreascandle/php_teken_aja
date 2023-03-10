@@ -59,7 +59,7 @@ class Api
      */
     private static $timeOut = 60;
 
-    private function headerConfig($contentType = 'application/json', )
+    private function headerConfig($contentType = 'application/json')
     {
         $headers = array();
         $headers['Accept'] = 'application/json';
@@ -375,7 +375,8 @@ class Api
             'zip_code' => $zip_code,
         );
 
-        $body = Body::Multipart($data, $files);        
+        $body = Body::Multipart($data, $files);     
+        print_r($data);   
         $response = Request::post($request_path, $headers, $body);
 
         return $response;
